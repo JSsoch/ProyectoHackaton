@@ -1,0 +1,59 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+  }
+  
+  header {
+    text-align: center;
+    padding: 1em;
+    background-color: #6200ea;
+    color: #fff;
+  }
+  
+  h1 {
+    margin: 0;
+  }
+  
+  #habitForm, #habitList {
+    max-width: 600px;
+    margin: 2em auto;
+    padding: 1em;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  input, button {
+    display: block;
+    width: 100%;
+    margin: 0.5em 0;
+    padding: 0.75em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  button {
+    background-color: #6200ea;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #3700b3;
+  }
+  
+  .habit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5em 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .progress-bar {
+    height: 10px;
+    background-color: #6200ea;
+    border-radius: 5px;
+  }
