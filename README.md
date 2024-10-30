@@ -14,3 +14,11 @@ Esta aplicación permite a los usuarios hacer un seguimiento de sus hábitos dia
 - **CSS3**: Estilos y diseño de la interfaz de usuario.
 - **JavaScript**: Lógica y funcionalidad principal de la aplicación.
 - **Firebase**: Almacenamiento y gestión de datos en la nube.
+- 
+## **Equipo Bugs(bichos)**
+conformado por:
+- **JosueSoch**: (Capitan)
+- **JoresRubio**:
+- **MarlonCelis**:
+- **DanielClemente**:
+- **MarioMatheu**:
