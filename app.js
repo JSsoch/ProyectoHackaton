@@ -72,4 +72,104 @@ const firebaseConfig = {
   document.addEventListener("DOMContentLoaded", () => {
     loadHabits();
     setupNotifications();
-  });
+  const weeklyProgress = [5, 6, 7, 5, 8, 6, 7];
+const monthlyProgress = [20, 23, 25, 30, 22, 24, 27, 25, 29, 26, 30, 28];
+
+function renderWeeklyProgressChart() {
+    const ctx = document.getElementById('weeklyChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'],
+            datasets: [{
+                label: 'Progreso Semanal',
+                data: weeklyProgress,
+                backgroundColor: '#76c7c0',
+                borderColor: '#5ab3b2',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+
+
+function renderMonthlyProgressChart() {
+    const ctx = document.getElementById('monthlyChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: Array.from({ length: monthlyProgress.length }, (_, i) => `Día ${i + 1}`),
+            datasets: [{
+                label: 'Progreso Mensual',
+                data: monthlyProgress,
+                borderColor: '#ff9f40',
+                backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                fill: true
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    renderWeeklyProgressChart();
+    renderMonthlyProgressChart();
+});
+
+function requestNotificationPermission() {
+  if (Notification.permission === 'default') {
+      Notification.requestPermission().then(permission => {
+          if (permission === 'granted') {
+              console.log("Permiso de notificación concedido.");
+          } else {
+              console.log("Permiso de notificación denegado.");
+          }
+      });
+  }
+}
+
+// Función para mostrar notificación personalizada
+function sendCustomNotification(habitName) {
+  const currentHour = new Date().getHours();
+  let greeting = '';
+
+  if (currentHour < 12) {
+      greeting = 'Buenos días';
+  } else if (currentHour < 18) {
+      greeting = 'Buenas tardes';
+  } else {
+      greeting = 'Buenas noches';
+  }
+
+  const message = `${greeting}, ¡es hora de trabajar en tu hábito: ${habitName}!`;
+
+  if (Notification.permission === 'granted') {
+      new Notification('Recordatorio de Hábito', {
+          body: message,
+          icon: 'icono.png' // Agrega el ícono adecuado si tienes uno
+      });
+  }
+}
+
+// Ejemplo: enviar notificación personalizada para un hábito en específico
+document.addEventListener('DOMContentLoaded', () => {
+  requestNotificationPermission();
+  // Puedes ajustar esto según la lógica de tus hábitos
+  setInterval(() => {
+      sendCustomNotification("Lectura de 20 minutos");
+  }, 60 * 60 * 1000); // Ejemplo: notificación cada hora
+});
