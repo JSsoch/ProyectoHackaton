@@ -161,15 +161,23 @@ function sendCustomNotification(habitName) {
       new Notification('Recordatorio de Hábito', {
           body: message,
           icon: 'icono.png' // Agrega el ícono adecuado si tienes uno
+          icon: 'icono.png' 
       });
   }
 }
 
 // Ejemplo: enviar notificación personalizada para un hábito en específico
+
 document.addEventListener('DOMContentLoaded', () => {
   requestNotificationPermission();
   // Puedes ajustar esto según la lógica de tus hábitos
+ 
   setInterval(() => {
       sendCustomNotification("Lectura de 20 minutos");
   }, 60 * 60 * 1000); // Ejemplo: notificación cada hora
-});
+
+function notifyUser(habit) {
+  if (Notification.permission === 'granted') {
+      new Notification(`¡Es hora de tu hábito: ${habit}!`);
+  }
+}
